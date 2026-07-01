@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CodeDaily — Practice Coding Every Day</title>
+<style>
+/* ============================================
+   CodeDaily — Standalone Styles
+   ============================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#6c5ce7;--primary-hover:#5a4bd1;--primary-light:#e8e5ff;--bg:#f8f9fc;--surface:#fff;--text:#1a1a2e;--muted:#6b7280;--border:#e2e8f0;--success:#10b981;--success-bg:#d1fae5;--pending:#f59e0b;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shadow-lg:0 10px 25px rgba(0,0,0,.07),0 4px 10px rgba(0,0,0,.05);--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+html{scroll-behavior: smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+code{background:var(--primary-light);padding:.1em .3em;border-radius:4px;font-size:.9em}
+
+.container{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+
+/* Nav */
+.navbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.35rem;font-weight:800;color:var(--primary);letter-spacing:-.5px}
+.logo:hover{text-decoration:none}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);text-decoration:none}
+.nav-links a.active{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:.75rem}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-family:inherit;font-size:.9rem;font-weight:600;padding:.55rem 1.3rem;border-radius:var(--radius-sm);border:2px solid transparent;cursor:pointer;transition:all .15s;text-decoration:none;white-space:nowrap}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:#fff}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--muted);color:var(--text)}
+.btn-lg{padding:.75rem 2rem;font-size:1rem}
+.btn-block{width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Hero */
+.hero{padding:5rem 0 4rem;background:linear-gradient(135deg,var(--bg) 0%,var(--primary-light) 100%)}
+.hero-inner{display:flex;align-items:center;gap:4rem}
+.hero-text{flex:1}
+.hero h1{font-size:2.75rem;font-weight:800;line-height:1.2;letter-spacing:-1px;margin-bottom:1rem}
+.highlight{color:var(--primary)}
+.hero-subtitle{font-size:1.15rem;color:var(--muted);max-width:540px;margin-bottom:2rem;line-height:1.7}
+.hero-actions{display:flex;gap:1rem;margin-bottom:1rem}
+.hero-meta{font-size:.85rem;color:var(--muted)}
+.hero-visual{flex:0 0 320px}
+.illust-card{background:var(--surface);border-radius:var(--radius);padding:1.75rem;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;font-size:.95rem}
+.stat-row+.stat-row{border-top:1px solid var(--border)}
+.stat-value{font-weight:700;color:var(--primary)}
+
+/* Sections */
+.section{padding:5rem 0}
+.section-alt{background:var(--surface)}
+.section-title{font-size:2rem;font-weight:800;text-align:center;letter-spacing:-.5px;margin-bottom:.5rem}
+.section-subtitle{text-align:center;color:var(--muted);font-size:1.1rem;margin-bottom:3rem}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.feature-card{background:var(--surface);border-radius:var(--radius);padding:1.75rem;border:1px solid var(--border);transition:box-shadow .2s,transform .2s}
+.feature-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.feature-icon{font-size:2rem;margin-bottom:.75rem}
+.feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.feature-card p{color:var(--muted);font-size:.95rem;line-height:1.6}
+
+/* Steps */
+.steps{display:flex;align-items:center;gap:1rem;max-width:900px;margin:0 auto}
+.step{flex:1;text-align:center;background:var(--bg);border-radius:var(--radius);padding:2rem 1.5rem;border:1px solid var(--border)}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.step h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.step p{color:var(--muted);font-size:.9rem;line-height:1.5}
+.step-arrow{font-size:1.5rem;color:var(--primary);font-weight:700;flex-shrink:0}
+
+/* Signup */
+.signup-card{max-width:600px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shadow-lg);text-align:center}
+.signup-card h2{font-size:1.75rem;font-weight:800;margin-bottom:.5rem}
+.signup-card>p{color:var(--muted);margin-bottom:2rem}
+.signup-form{text-align:left}
+.form-row{display:flex;gap:1rem;margin-bottom:1rem}
+.form-row>*{flex:1}
+input,select{width:100%;padding:.7rem 1rem;font-family:inherit;font-size:.95rem;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);transition:border-color .15s}
+input:focus,select:focus{outline:none;border-color:var(--primary)}
+.checkbox-label{display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--muted);cursor:pointer}
+.checkbox-label input[type="checkbox"]{width:auto;flex:none}
+.form-footer{text-align:center;margin-top:1.25rem;font-size:.9rem;color:var(--muted)}
+
+/* Footer */
+.footer{background:var(--surface);border-top:1px solid var(--border);padding:3rem 0 1.5rem}
+.footer-inner{display:flex;justify-content:space-between;gap:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.footer-brand p{color:var(--muted);font-size:.9rem;margin-top:.3rem}
+.footer-links{display:flex;gap:3rem}
+.footer-col h4{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;color:var(--muted)}
+.footer-col a{display:block;font-size:.9rem;color:var(--text);padding:.2rem 0}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.85rem;color:var(--muted)}
+
+/* Dashboard */
+.page{display:none}
+.page.active{display:block}
+.dash-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem}
+.dash-title{font-size:1.75rem;font-weight:800}
+.dash-subtitle{color:var(--muted);margin-top:.25rem}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem}
+.stat-label{font-size:.85rem;color:var(--muted);font-weight:500;margin-bottom:.25rem}
+.stat-number{font-size:2rem;font-weight:800;letter-spacing:-1px}
+.stat-unit{font-size:.9rem;font-weight:500;color:var(--muted);margin-left:.25rem}
+.stat-change{font-size:.8rem;margin-top:.3rem;color:var(--muted)}
+.stat-change.up{color:var(--success)}
+.chart-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem}
+.chart-section h2{font-size:1.1rem;font-weight:700;margin-bottom:1.25rem}
+.chart{display:flex;align-items:flex-end;gap:.75rem;height:160px}
+.bar{flex:1;background:var(--primary);border-radius:var(--radius-sm) var(--radius-sm) 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:.4rem;position:relative;min-height:20px;transition:height .3s;opacity:.85}
+.bar span{font-size:.7rem;color:#fff;font-weight:600}
+.bar-val{font-size:.8rem!important;margin-bottom:.15rem}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.recent-section,.feedback-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.recent-section h2,.feedback-section h2{font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+.task-list{display:flex;flex-direction:column;gap:.5rem}
+.task-item{display:flex;align-items:center;justify-content:space-between;padding:.75rem;border-radius:var(--radius-sm);border:1px solid var(--border);transition:background .15s}
+.task-item:hover{background:var(--bg)}
+.task-info{display:flex;align-items:center;gap:.75rem}
+.task-status-icon{width:24px;height:24px;border-radius:50%;background:var(--success-bg);color:var(--success);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.task-status-icon.pending{background:#fef3c7;color:var(--pending)}
+.task-title{font-weight:600;font-size:.95rem}
+.task-meta{font-size:.8rem;color:var(--muted);margin-top:.1rem}
+.tag{font-size:.75rem;font-weight:600;padding:.2rem .6rem;border-radius:100px;flex-shrink:0}
+.tag-done{background:var(--success-bg);color:var(--success)}
+.tag-pending{background:#fef3c7;color:var(--pending)}
+.feedback-list{display:flex;flex-direction:column;gap:.75rem}
+.feedback-item{padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.feedback-header{display:flex;justify-content:space-between;margin-bottom:.3rem}
+.feedback-date{font-size:.8rem;color:var(--muted)}
+.feedback-text{font-size:.9rem;color:var(--muted);line-height:1.5;margin-bottom:.5rem}
+
+/* Tasks page */
+.task-nav{display:flex;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.task-nav-btn{padding:.45rem 1rem;border-radius:100px;border:1px solid var(--border);background:var(--surface);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s;color:var(--muted)}
+.task-nav-btn:hover{border-color:var(--primary);color:var(--primary)}
+.task-nav-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.task-board{display:grid;gap:1rem}
+.task-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s}
+.task-card:hover{box-shadow:var(--shadow)}
+.task-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.task-type{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--primary)}
+.task-card-title{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.task-card-desc{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:1rem}
+.task-card-meta{display:flex;gap:1.5rem;font-size:.85rem;color:var(--muted);margin-bottom:1rem}
+.completed-badge{display:inline-flex;align-items:center;gap:.3rem;font-weight:700;color:var(--success);font-size:.9rem}
+.feedback-brief{font-size:.85rem;color:var(--muted);padding:.75rem 1rem;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--primary);margin-top:.75rem}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--text);color:#fff;padding:.9rem 1.5rem;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;box-shadow:var(--shadow-lg);transform:translateY(120%);opacity:0;transition:all .3s ease;z-index:200}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Nav page links */
+.page-link{display:inline-block;padding:.3rem .8rem;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;transition:background .15s;cursor:pointer}
+.page-link:hover,.page-link.active{background:var(--primary-light);text-decoration:none}
+
+@media(max-width:1024px){
+  .features-grid,.stats-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .hero-inner{flex-direction:column;gap:2rem}
+  .hero h1{font-size:2rem}
+  .hero-visual{flex:none;width:100%}
+  .features-grid,.steps{flex-direction:column}
+  .steps{flex-direction:column}
+  .step-arrow{transform:rotate(90deg)}
+  .nav-links{display:none}
+  .form-row{flex-direction:column}
+  .footer-inner{flex-direction:column;gap:2rem}
+  .footer-links{flex-wrap:wrap;gap:2rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-header{flex-direction:column;gap:1rem}
+  .task-card-meta{flex-direction:column;gap:.3rem}
+}
+@media(max-width:480px){
+  .stats-grid,.hero-actions{grid-template-columns:1fr;flex-direction:column}
+  .hero h1{font-size:1.75rem}
+  .section{padding:3rem 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <span class="logo">CodeDaily</span>
+    <div class="nav-links">
+      <a href="#" class="page-link active" data-page="home">Home</a>
+      <a href="#" class="page-link" data-page="dashboard">Dashboard</a>
+      <a href="#" class="page-link" data-page="tasks">Tasks</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-outline" data-page="signup">Sign Up</a>
+      <a href="#" class="btn btn-primary" data-page="signup">Log In</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Build your coding habit, <span class="highlight">one day at a time</span></h1>
+        <p class="hero-subtitle">CodeDaily helps first-time coders track daily practice, share progress with mentors, and receive automated practice suggestions. Stay consistent, level up faster.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" data-page="signup">Get Started Free</a>
+          <a href="#" class="btn btn-outline btn-lg" data-page="features">Learn More</a>
+        </div>
+        <p class="hero-meta">No credit card required &middot; Free for beginners</p>
+      </div>
+      <div class="hero-visual">
+        <div class="illust-card">
+          <div class="stat-row"><span>🔥 Streak</span><span class="stat-value">12 days</span></div>
+          <div class="stat-row"><span>✅ Tasks done</span><span class="stat-value">34</span></div>
+          <div class="stat-row"><span>⭐ Level</span><span class="stat-value">Beginner+</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">Everything you need to stay consistent</h2>
+      <p class="section-subtitle">Built for beginners, backed by mentors.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">📝</div><h3>Daily Practice Prompts</h3><p>Get a fresh coding task every day, tailored to your skill level.</p></div>
+        <div class="feature-card"><div class="feature-icon">📊</div><h3>Progress Dashboard</h3><p>See your streaks, completion rates, and skill growth at a glance.</p></div>
+        <div class="feature-card"><div class="feature-icon">👩‍🏫</div><h3>Mentor Feedback</h3><p>Share your work with mentors who review and leave actionable feedback.</p></div>
+        <div class="feature-card"><div class="feature-icon">⚡</div><h3>Onboarding in 5 min</h3><p>Set your goals, choose your track, and start your first task in under five minutes.</p></div>
+        <div class="feature-card"><div class="feature-icon">📈</div><h3>Cohort Analytics</h3><p>Instructors can monitor cohort-level progress and export reports.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔔</div><h3>Smart Reminders</h3><p>Never miss a day. Get reminders via email or push when a new task is waiting.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-subtitle">Three simple steps to start building your coding habit.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><h3>Sign up &amp; set goals</h3><p>Create your account, set your learning goals, and pick your weekly commitment.</p></div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">2</div><h3>Complete daily tasks</h3><p>Receive a curated practice prompt each day. Write code, submit, and track your progress.</p></div>
+        <div class="step-arrow">→</div>
+        <div class="step"><div class="step-num">3</div><h3>Get feedback &amp; grow</h3><p>Mentors review your submissions, share tips, and help you level up faster.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup" class="section">
+    <div class="container">
+      <div class="signup-card">
+        <h2>Start your coding journey today</h2>
+        <p>Join thousands of beginners who practice daily and level up fast.</p>
+        <form id="signupForm" class="signup-form">
+          <div class="form-row">
+            <input type="text" placeholder="Full name" required aria-label="Full name" />
+            <input type="email" placeholder="Email address" required aria-label="Email address" />
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="Password" required aria-label="Password" minlength="6" />
+            <select aria-label="I want to learn"><option value="">I want to learn…</option><option>HTML &amp; CSS</option><option>JavaScript</option><option>Python</option><option>React</option><option>Node.js</option></select>
+          </div>
+          <div class="form-row"><label class="checkbox-label"><input type="checkbox" required /> I agree to the Terms &amp; Privacy Policy</label></div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Create Free Account</button>
+          <p class="form-footer">Already have an account? <a href="#" data-page="signup">Log in</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== DASHBOARD PAGE ===== -->
+<div id="page-dashboard" class="page">
+  <main class="container" style="padding-top:2rem;padding-bottom:3rem">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">Welcome back, Alex 👋</h1>
+        <p class="dash-subtitle">Keep your streak alive — you're doing great!</p>
+      </div>
+      <a href="#" class="btn btn-primary" data-page="tasks">Today's Task</a>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Current Streak</div><div class="stat-number">12<span class="stat-unit">days</span></div><div class="stat-change up">+2 vs last week</div></div>
+      <div class="stat-card"><div class="stat-label">Tasks Completed</div><div class="stat-number">34<span class="stat-unit">total</span></div><div class="stat-change up">+5 this week</div></div>
+      <div class="stat-card"><div class="stat-label">Completion Rate</div><div class="stat-number">87<span class="stat-unit">%</span></div><div class="stat-change up">+3% vs last week</div></div>
+      <div class="stat-card"><div class="stat-label">Mentor Feedback</div><div class="stat-number">8<span class="stat-unit">reviews</span></div><div class="stat-change">Last review 2 days ago</div></div>
+    </div>
+    <section class="chart-section">
+      <h2>Weekly Activity</h2>
+      <div class="chart" role="img" aria-label="Bar chart of weekly task completions">
+        <div class="bar" style="height:60%"><span>Mon</span><span class="bar-val">3</span></div>
+        <div class="bar" style="height:80%"><span>Tue</span><span class="bar-val">4</span></div>
+        <div class="bar" style="height:100%"><span>Wed</span><span class="bar-val">5</span></div>
+        <div class="bar" style="height:40%"><span>Thu</span><span class="bar-val">2</span></div>
+        <div class="bar" style="height:80%"><span>Fri</span><span class="bar-val">4</span></div>
+        <div class="bar" style="height:60%"><span>Sat</span><span class="bar-val">3</span></div>
+        <div class="bar" style="height:20%"><span>Sun</span><span class="bar-val">1</span></div>
+      </div>
+    </section>
+    <div class="dash-grid">
+      <section class="recent-section">
+        <h2>Recent Tasks</h2>
+        <div class="task-list">
+          <div class="task-item completed"><div class="task-info"><span class="task-status-icon">✓</span><div><div class="task-title">Build a navigation bar with Flexbox</div><div class="task-meta">Completed 2h ago &middot; Feedback received</div></div></div><span class="tag tag-done">Done</span></div>
+          <div class="task-item completed"><div class="task-info"><span class="task-status-icon">✓</span><div><div class="task-title">CSS Grid — responsive card layout</div><div class="task-meta">Completed yesterday &middot; Awaiting feedback</div></div></div><span class="tag tag-done">Done</span></div>
+          <div class="task-item"><div class="task-info"><span class="task-status-icon pending">○</span><div><div class="task-title">JavaScript DOM manipulation practice</div><div class="task-meta">Assigned today &middot; Due in 6h</div></div></div><span class="tag tag-pending">Pending</span></div>
+          <div class="task-item"><div class="task-info"><span class="task-status-icon pending">○</span><div><div class="task-title">Build a simple counter app</div><div class="task-meta">Assigned tomorrow</div></div></div><span class="tag tag-pending">Pending</span></div>
+        </div>
+      </section>
+      <section class="feedback-section">
+        <h2>Latest Feedback</h2>
+        <div class="feedback-list">
+          <div class="feedback-item"><div class="feedback-header"><strong>Mentor Sarah</strong><span class="feedback-date">2h ago</span></div><p class="feedback-text">Great use of Flexbox! Try adding <code>gap</code> instead of margins on the nav items — it's cleaner.</p><span class="tag tag-done">Resolved</span></div>
+          <div class="feedback-item"><div class="feedback-header"><strong>Mentor Sarah</strong><span class="feedback-date">Yesterday</span></div><p class="feedback-text">Your grid layout is solid. Next time, experiment with <code>grid-template-areas</code> for more complex layouts.</p><span class="tag tag-done">Resolved</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- ===== TASKS PAGE ===== -->
+<div id="page-tasks" class="page">
+  <main class="container" style="padding-top:2rem;padding-bottom:3rem">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">Today's Tasks</h1>
+        <p class="dash-subtitle">Complete your daily practice and keep your streak alive.</p>
+      </div>
+      <div class="task-nav">
+        <button class="task-nav-btn active" data-filter="all">All</button>
+        <button class="task-nav-btn" data-filter="pending">Pending</button>
+        <button class="task-nav-btn" data-filter="done">Completed</button>
+      </div>
+    </div>
+    <div class="task-board">
+      <div class="task-card" data-status="pending">
+        <div class="task-card-header"><span class="task-type">JavaScript</span><span class="tag tag-pending">Pending</span></div>
+        <h3 class="task-card-title">DOM Manipulation — Build a to-do list</h3>
+        <p class="task-card-desc">Create a working to-do list using vanilla JavaScript. Users should be able to add, complete, and delete items.</p>
+        <div class="task-card-meta"><span>📅 Due today at 11:59 PM</span><span>⏱ ~30 min</span></div>
+        <button class="btn btn-primary task-complete-btn">Mark as Complete</button>
+      </div>
+      <div class="task-card" data-status="pending">
+        <div class="task-card-header"><span class="task-type">CSS</span><span class="tag tag-pending">Pending</span></div>
+        <h3 class="task-card-title">Responsive card layout with Grid</h3>
+        <p class="task-card-desc">Build a responsive card grid using CSS Grid. Cards should stack on mobile and display in a 3-column layout on desktop.</p>
+        <div class="task-card-meta"><span>📅 Due tomorrow at 11:59 PM</span><span>⏱ ~20 min</span></div>
+        <button class="btn btn-primary task-complete-btn">Mark as Complete</button>
+      </div>
+      <div class="task-card" data-status="done">
+        <div class="task-card-header"><span class="task-type">HTML</span><span class="tag tag-done">Completed</span></div>
+        <h3 class="task-card-title">Build a semantic HTML page</h3>
+        <p class="task-card-desc">Create a blog post page using semantic HTML elements: header, nav, main, article, section, footer.</p>
+        <div class="task-card-meta"><span>✅ Completed yesterday</span><span>⏱ ~15 min</span></div>
+        <span class="completed-badge">✓ Completed</span>
+        <div class="feedback-brief"><strong>Mentor Sarah:</strong> Great semantic structure! Consider adding an <code>&lt;aside&gt;</code> for related links.</div>
+      </div>
+      <div class="task-card" data-status="done">
+        <div class="task-card-header"><span class="task-type">CSS</span><span class="tag tag-done">Completed</span></div>
+        <h3 class="task-card-title">Build a navigation bar with Flexbox</h3>
+        <p class="task-card-desc">Create a responsive nav bar using Flexbox. Include logo, nav links, and a CTA button.</p>
+        <div class="task-card-meta"><span>✅ Completed 2 days ago</span><span>⏱ ~15 min</span></div>
+        <span class="completed-badge">✓ Completed</span>
+        <div class="feedback-brief"><strong>Mentor Sarah:</strong> Nice work! Try using <code>gap</code> instead of margins on nav items.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><span class="logo">CodeDaily</span><p>Building better coders, one day at a time.</p></div>
+    <div class="footer-links">
+      <div class="footer-col"><h4>Product</h4><a href="#" data-page="home">Features</a><a href="#" data-page="tasks">Tasks</a><a href="#" data-page="dashboard">Dashboard</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+  <div class="container footer-bottom"><p>&copy; 2026 CodeDaily. All rights reserved.</p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove('show'); }, 3000);
+  }
+
+  // Page navigation
+  var pages = document.querySelectorAll('.page');
+  var pageLinks = document.querySelectorAll('[data-page]');
+  function showPage(id) {
+    pages.forEach(function(p){ p.classList.remove('active'); });
+    var target = document.getElementById('page-' + id);
+    if (target) target.classList.add('active');
+    pageLinks.forEach(function(l){
+      l.classList.toggle('active', l.dataset.page === id);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  pageLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      showPage(this.dataset.page);
+    });
+  });
+
+  // Signup form
+  var form = document.getElementById('signupForm');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = form.querySelector('input[placeholder="Full name"]').value.trim();
+      if (name) {
+        showToast('Welcome to CodeDaily, ' + name.split(' ')[0] + '!');
+        form.reset();
+        setTimeout(function(){ showPage('dashboard'); }, 500);
+      }
+    });
+  }
+
+  // Task completion
+  document.querySelectorAll('.task-complete-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('.task-card');
+      if (!card) return;
+      card.querySelector('.tag').textContent = 'Completed';
+      card.querySelector('.tag').className = 'tag tag-done';
+      card.dataset.status = 'done';
+      btn.textContent = '✓ Completed';
+      btn.className = 'btn btn-outline';
+      btn.disabled = true;
+      showToast('Task marked as complete! Great work!');
+    });
+  });
+
+  // Task filters
+  document.querySelectorAll('.task-nav-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var parent = btn.parentElement;
+      parent.querySelectorAll('.task-nav-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      document.querySelectorAll('.task-card').forEach(function(card){
+        card.style.display = (filter === 'all' || card.dataset.status === filter) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

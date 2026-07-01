@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks — CodeDaily</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">CodeDaily</a>
+      <div class="nav-links">
+        <a href="tasks.html" class="active">Tasks</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="/#features">Features</a>
+      </div>
+      <div class="nav-actions">
+        <span class="user-badge">Alex</span>
+        <a href="/" class="btn btn-outline">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">Today's Tasks</h1>
+        <p class="dash-subtitle">Complete your daily practice and keep your streak alive.</p>
+      </div>
+      <div class="task-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="done">Completed</button>
+      </div>
+    </div>
+
+    <div class="task-board">
+      <div class="task-card" data-status="pending">
+        <div class="task-card-header">
+          <span class="task-type">JavaScript</span>
+          <span class="tag tag-pending">Pending</span>
+        </div>
+        <h3 class="task-card-title">DOM Manipulation — Build a to-do list</h3>
+        <p class="task-card-desc">Create a working to-do list using vanilla JavaScript. Users should be able to add, complete, and delete items.</p>
+        <div class="task-card-meta">
+          <span>📅 Due today at 11:59 PM</span>
+          <span>⏱ ~30 min</span>
+        </div>
+        <button class="btn btn-primary task-complete-btn" data-task="1">Mark as Complete</button>
+      </div>
+
+      <div class="task-card" data-status="pending">
+        <div class="task-card-header">
+          <span class="task-type">CSS</span>
+          <span class="tag tag-pending">Pending</span>
+        </div>
+        <h3 class="task-card-title">Responsive card layout with Grid</h3>
+        <p class="task-card-desc">Build a responsive card grid using CSS Grid. Cards should stack on mobile and display in a 3-column layout on desktop.</p>
+        <div class="task-card-meta">
+          <span>📅 Due tomorrow at 11:59 PM</span>
+          <span>⏱ ~20 min</span>
+        </div>
+        <button class="btn btn-primary task-complete-btn" data-task="2">Mark as Complete</button>
+      </div>
+
+      <div class="task-card" data-status="done">
+        <div class="task-card-header">
+          <span class="task-type">HTML</span>
+          <span class="tag tag-done">Completed</span>
+        </div>
+        <h3 class="task-card-title">Build a semantic HTML page</h3>
+        <p class="task-card-desc">Create a blog post page using semantic HTML elements: header, nav, main, article, section, footer.</p>
+        <div class="task-card-meta">
+          <span>✅ Completed yesterday</span>
+          <span>⏱ ~15 min</span>
+        </div>
+        <div class="task-card-actions">
+          <span class="completed-badge">✓ Completed</span>
+          <button class="btn btn-outline" disabled>View Submission</button>
+        </div>
+        <div class="feedback-brief">
+          <strong>Mentor Sarah:</strong> Great semantic structure! Consider adding an <code>&lt;aside&gt;</code> for related links.
+        </div>
+      </div>
+
+      <div class="task-card" data-status="done">
+        <div class="task-card-header">
+          <span class="task-type">CSS</span>
+          <span class="tag tag-done">Completed</span>
+        </div>
+        <h3 class="task-card-title">Build a navigation bar with Flexbox</h3>
+        <p class="task-card-desc">Create a responsive nav bar using Flexbox. Include logo, nav links, and a CTA button.</p>
+        <div class="task-card-meta">
+          <span>✅ Completed 2 days ago</span>
+          <span>⏱ ~15 min</span>
+        </div>
+        <div class="task-card-actions">
+          <span class="completed-badge">✓ Completed</span>
+          <button class="btn btn-outline" disabled>View Submission</button>
+        </div>
+        <div class="feedback-brief">
+          <strong>Mentor Sarah:</strong> Nice work! Try using <code>gap</code> instead of margins on nav items.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">CodeDaily</span>
+        <p>Building better coders, one day at a time.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="tasks.html">Tasks</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CodeDaily. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

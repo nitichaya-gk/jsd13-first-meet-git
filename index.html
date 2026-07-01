@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeDaily — Practice Coding Every Day</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">CodeDaily</a>
+      <div class="nav-links">
+        <a href="tasks.html">Tasks</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#features">Features</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#signup" class="btn btn-outline">Sign Up</a>
+        <a href="#login" class="btn btn-primary">Log In</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Build your coding habit, <span class="highlight">one day at a time</span></h1>
+        <p class="hero-subtitle">
+          CodeDaily helps first-time coders track daily practice, share progress with mentors,
+          and receive automated practice suggestions. Stay consistent, level up faster.
+        </p>
+        <div class="hero-actions">
+          <a href="#signup" class="btn btn-primary btn-lg">Get Started Free</a>
+          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+        </div>
+        <p class="hero-meta">No credit card required &middot; Free for beginners</p>
+      </div>
+      <div class="hero-visual">
+        <div class="illust-card">
+          <div class="stat-row"><span>🔥 Streak</span><span class="stat-value">12 days</span></div>
+          <div class="stat-row"><span>✅ Tasks done</span><span class="stat-value">34</span></div>
+          <div class="stat-row"><span>⭐ Level</span><span class="stat-value">Beginner+</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">Everything you need to stay consistent</h2>
+      <p class="section-subtitle">Built for beginners, backed by mentors.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Daily Practice Prompts</h3>
+          <p>Get a fresh coding task every day, tailored to your skill level and learning goals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Progress Dashboard</h3>
+          <p>See your streaks, completion rates, and skill growth at a glance with clear visual charts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👩‍🏫</div>
+          <h3>Mentor Feedback</h3>
+          <p>Share your work with mentors who review your submissions and leave actionable feedback.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Onboarding in 5 min</h3>
+          <p>Set your goals, choose your track, and start your first task — all in under five minutes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Cohort Analytics</h3>
+          <p>Instructors can monitor cohort-level progress, identify at-risk students, and export reports.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔔</div>
+          <h3>Smart Reminders</h3>
+          <p>Never miss a day. Get reminders via email or push when a new task is waiting for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-subtitle">Three simple steps to start building your coding habit.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Sign up & set goals</h3>
+          <p>Create your account, tell us what you want to learn, and pick your weekly commitment.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Complete daily tasks</h3>
+          <p>Receive a curated practice prompt each day. Write code, submit, and track your progress.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Get feedback & grow</h3>
+          <p>Mentors review your submissions, share tips, and help you level up faster.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup" class="section">
+    <div class="container">
+      <div class="signup-card">
+        <h2>Start your coding journey today</h2>
+        <p>Join thousands of beginners who practice daily and level up fast.</p>
+        <form id="signupForm" class="signup-form">
+          <div class="form-row">
+            <input type="text" placeholder="Full name" required aria-label="Full name" />
+            <input type="email" placeholder="Email address" required aria-label="Email address" />
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="Password" required aria-label="Password" minlength="6" />
+            <select aria-label="I want to learn">
+              <option value="">I want to learn…</option>
+              <option>HTML & CSS</option>
+              <option>JavaScript</option>
+              <option>Python</option>
+              <option>React</option>
+              <option>Node.js</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" required /> I agree to the Terms & Privacy Policy
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Create Free Account</button>
+          <p class="form-footer">Already have an account? <a href="#login">Log in</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">CodeDaily</span>
+        <p>Building better coders, one day at a time.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="tasks.html">Tasks</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CodeDaily. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
