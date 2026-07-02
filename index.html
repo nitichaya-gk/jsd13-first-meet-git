@@ -1,181 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeDaily — Practice Coding Every Day</title>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ExpatCare Thailand — Insurance for Expats in Thailand</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#0a4b8c;--primary-light:#3a7bd5;--primary-dark:#072f5c;--accent:#10b981;--accent-light:#d1fae5;--bg:#f0f6fc;--surface:#fff;--text:#1a2332;--muted:#5b6e8c;--border:#dce7f5;--radius:12px;--radius-sm:8px;--shadow:0 2px 8px rgba(10,75,140,.08);--shadow-lg:0 12px 32px rgba(10,75,140,.12);--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--max-w:1120px}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 1.5rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-family:inherit;font-size:.95rem;font-weight:600;padding:.65rem 1.5rem;border-radius:var(--radius-sm);border:2px solid transparent;cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
+.btn-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-accent:hover{background:#059669;border-color:#059669;color:#fff}
+.btn-outline{background:transparent;color:var(--primary);border-color:var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.btn-outline-light{background:transparent;color:#fff;border-color:#fff}
+.btn-outline-light:hover{background:#fff;color:var(--primary)}
+.btn-lg{padding:.85rem 2.2rem;font-size:1.05rem}
+.btn-block{width:100%}
+
+/* Nav */
+.navbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-size:1.4rem;font-weight:800;color:var(--primary);letter-spacing:-.5px;display:flex;align-items:center;gap:.5rem}
+.logo span{background:var(--accent);color:#fff;font-size:.6rem;padding:.15rem .45rem;border-radius:4px;font-weight:700;letter-spacing:0}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--primary);text-decoration:none}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{width:26px;height:2.5px;background:var(--text);border-radius:2px;transition:all .2s}
+
+/* Hero */
+.hero{position:relative;padding:5rem 0 6rem;background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 60%,var(--primary-light) 100%);overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero .container{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero h1{font-size:3rem;font-weight:800;line-height:1.15;letter-spacing:-1px;color:#fff;margin-bottom:1.25rem}
+.hero h1 span{color:#93c5fd}
+.hero p{font-size:1.15rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:2rem;max-width:540px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:2rem;font-weight:800;color:#fff;display:block;line-height:1.2}
+.hero-stat-label{font-size:.85rem;color:rgba(255,255,255,.7)}
+.hero-visual{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:var(--radius);padding:2.5rem;border:1px solid rgba(255,255,255,.12)}
+.hero-visual h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:1.25rem}
+.benefit-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.pill{background:rgba(255,255,255,.1);color:#fff;padding:.4rem 1rem;border-radius:100px;font-size:.85rem;font-weight:500;border:1px solid rgba(255,255,255,.1)}
+.hero-testimonial{border-top:1px solid rgba(255,255,255,.1);padding-top:1.25rem;margin-top:.5rem}
+.hero-testimonial p{color:rgba(255,255,255,.8);font-size:.9rem;font-style:italic;margin-bottom:0;max-width:100%}
+.hero-testimonial cite{color:rgba(255,255,255,.6);font-size:.8rem;font-style:normal}
+
+/* Sections */
+.section{padding:5rem 0}
+.section-alt{background:var(--surface)}
+.section-title{font-size:2rem;font-weight:800;text-align:center;letter-spacing:-.5px;margin-bottom:.5rem;color:var(--text)}
+.section-subtitle{text-align:center;color:var(--muted);font-size:1.1rem;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* Features / Benefits */
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.benefit-card{background:var(--surface);border-radius:var(--radius);padding:2rem;border:1px solid var(--border);transition:box-shadow .2s,transform .2s}
+.benefit-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.benefit-icon{width:56px;height:56px;border-radius:12px;object-fit:cover;margin-bottom:1rem;display:block}
+.benefit-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.benefit-card p{color:var(--muted);font-size:.95rem;line-height:1.7}
+
+/* Plans */
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.plan-card{background:var(--surface);border-radius:var(--radius);padding:2rem;border:1px solid var(--border);transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.plan-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.plan-card.featured{border-color:var(--primary);border-width:2px;position:relative}
+.plan-card.featured::before{content:'Most Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.75rem;font-weight:700;padding:.25rem 1rem;border-radius:100px;text-transform:uppercase;letter-spacing:.5px}
+.plan-name{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--primary);margin-bottom:.25rem}
+.plan-card h3{font-size:1.5rem;font-weight:800;margin-bottom:.3rem}
+.plan-card .price{font-size:.95rem;color:var(--muted);margin-bottom:1.5rem}
+.plan-features{list-style:none;padding:0;margin-bottom:1.5rem;flex:1}
+.plan-features li{padding:.5rem 0;font-size:.95rem;color:var(--text);display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--border)}
+.plan-features li:last-child{border-bottom:none}
+.plan-features li::before{content:'\2713';color:var(--accent);font-weight:800;font-size:1rem}
+
+/* Coverage */
+.coverage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.coverage-item{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:var(--bg);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.coverage-icon{width:52px;height:52px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.coverage-item h4{font-size:.95rem;font-weight:700;margin-bottom:.15rem}
+.coverage-item p{font-size:.85rem;color:var(--muted)}
+
+/* Trust / Testimonials */
+.testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.testimonial-card{background:var(--surface);border-radius:var(--radius);padding:2rem;border:1px solid var(--border);position:relative}
+.testimonial-card::before{content:'"';position:absolute;top:.75rem;left:1.25rem;font-size:3rem;color:var(--primary);opacity:.15;font-weight:800;line-height:1}
+.testimonial-card p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:.75rem}
+.testimonial-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.testimonial-author strong{font-size:.9rem;display:block}
+.testimonial-author span{font-size:.8rem;color:var(--muted)}
+
+/* Certifications */
+.certs{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:2rem}
+.cert-badge{display:flex;align-items:center;gap:.6rem;padding:.75rem 1.25rem;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:.85rem;font-weight:600;color:var(--muted)}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;background:var(--surface)}
+.faq-question{width:100%;padding:1.1rem 1.5rem;background:none;border:none;font-family:inherit;font-size:1rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;transition:background .15s}
+.faq-question:hover{background:var(--bg)}
+.faq-question span{transition:transform .2s;font-size:1.2rem;color:var(--muted)}
+.faq-item.open .faq-question span{transform:rotate(180deg)}
+.faq-answer{padding:0 1.5rem 1.1rem;font-size:.95rem;color:var(--muted);line-height:1.7;display:none}
+.faq-item.open .faq-answer{display:block}
+
+/* Form */
+.form-section{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%)}
+.form-section .section-title,.form-section .section-subtitle{color:#fff}
+.form-section .section-subtitle{color:rgba(255,255,255,.8)}
+.form-card{max-width:620px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.9rem;font-weight:600;margin-bottom:.4rem;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.75rem 1rem;font-family:inherit;font-size:.95rem;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);transition:border-color .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary)}
+.form-group textarea{min-height:100px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-success{display:none;text-align:center;padding:2rem}
+.form-success.show{display:block}
+.form-success .check{width:60px;height:60px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;font-weight:800}
+.form-success h3{font-size:1.3rem;margin-bottom:.5rem}
+.form-success p{color:var(--muted)}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.blog-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface);transition:box-shadow .2s,transform .2s}
+.blog-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.blog-card-img{width:100%;height:180px;object-fit:cover;display:block}
+.blog-card-body{padding:1.5rem}
+.blog-card-tag{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--primary);margin-bottom:.4rem}
+.blog-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;line-height:1.4}
+.blog-card p{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.blog-card a{font-weight:600;font-size:.9rem}
+
+/* Contact / CTA */
+.cta-section{text-align:center;padding:4rem 0}
+.cta-section h2{font-size:2.2rem;font-weight:800;margin-bottom:.75rem}
+.cta-section p{color:var(--muted);font-size:1.1rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.contact-channels{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.contact-channel{display:flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);font-size:.9rem;font-weight:600;color:var(--text);transition:box-shadow .2s}
+.contact-channel:hover{box-shadow:var(--shadow);text-decoration:none}
+
+/* Footer */
+.footer{background:var(--primary-dark);color:rgba(255,255,255,.7);padding:3rem 0 1.5rem}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo{color:#fff;margin-bottom:.5rem}
+.footer-brand p{font-size:.9rem;margin-top:.5rem;max-width:280px}
+.footer-col h4{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;color:#fff}
+.footer-col a{display:block;font-size:.9rem;color:rgba(255,255,255,.6);padding:.25rem 0;transition:color .15s}
+.footer-col a:hover{color:#fff;text-decoration:none}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.85rem}
+
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary-dark);color:#fff;padding:.9rem 1.5rem;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;box-shadow:var(--shadow-lg);transform:translateY(120%);opacity:0;transition:all .3s ease;z-index:200}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero h1{font-size:2.5rem}
+  .benefits-grid,.plans-grid,.blog-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .hero{padding:3rem 0 4rem}
+  .hero h1{font-size:2rem}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap}
+  .benefits-grid,.plans-grid,.blog-grid,.testimonials-grid,.coverage-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--surface);flex-direction:column;padding:1rem 1.5rem;border-bottom:1px solid var(--border);gap:1rem}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  .section{padding:3rem 0}
+  .section-title{font-size:1.6rem}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+  .hero-stat-num{font-size:1.6rem}
+  .certs{gap:1rem}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.7rem}
+  .hero-actions{flex-direction:column}
+  .btn-lg{padding:.75rem 1.5rem}
+  .form-card{padding:1.5rem}
+}
+</style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-inner">
-      <a href="/" class="logo">CodeDaily</a>
-      <div class="nav-links">
-        <a href="tasks.html">Tasks</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="#features">Features</a>
-      </div>
-      <div class="nav-actions">
-        <a href="#signup" class="btn btn-outline">Sign Up</a>
-        <a href="#login" class="btn btn-primary">Log In</a>
-      </div>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <h1>Build your coding habit, <span class="highlight">one day at a time</span></h1>
-        <p class="hero-subtitle">
-          CodeDaily helps first-time coders track daily practice, share progress with mentors,
-          and receive automated practice suggestions. Stay consistent, level up faster.
-        </p>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo">ExpatCare <span>Thailand</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#benefits">Benefits</a>
+      <a href="#plans">Plans</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1>Insurance designed for <span>life in Thailand</span></h1>
+        <p>Affordable health, accident, and family protection plans made for expatriates. Simple language, real coverage, and peace of mind — so you can focus on living.</p>
         <div class="hero-actions">
-          <a href="#signup" class="btn btn-primary btn-lg">Get Started Free</a>
-          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+          <a href="#quote" class="btn btn-accent btn-lg">Get a Free Quote</a>
+          <a href="#plans" class="btn btn-outline-light btn-lg">Explore Plans</a>
         </div>
-        <p class="hero-meta">No credit card required &middot; Free for beginners</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num">10,000+</span><span class="hero-stat-label">Expats Covered</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">98%</span><span class="hero-stat-label">Claim Satisfaction</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">24/7</span><span class="hero-stat-label">Support</span></div>
+        </div>
       </div>
       <div class="hero-visual">
-        <div class="illust-card">
-          <div class="stat-row"><span>🔥 Streak</span><span class="stat-value">12 days</span></div>
-          <div class="stat-row"><span>✅ Tasks done</span><span class="stat-value">34</span></div>
-          <div class="stat-row"><span>⭐ Level</span><span class="stat-value">Beginner+</span></div>
+        <h3>Why expats choose us</h3>
+        <div class="benefit-pills">
+          <span class="pill">Health Coverage</span>
+          <span class="pill">Accident Protection</span>
+          <span class="pill">Travel Insurance</span>
+          <span class="pill">Family Plans</span>
+          <span class="pill">No Hidden Fees</span>
+          <span class="pill">English Support</span>
+        </div>
+        <div class="hero-testimonial">
+          <p>"I finally found insurance I actually understand. The team helped me choose the right plan in minutes."</p>
+          <cite>— Sarah J., expat in Bangkok</cite>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <section id="features" class="section">
-    <div class="container">
-      <h2 class="section-title">Everything you need to stay consistent</h2>
-      <p class="section-subtitle">Built for beginners, backed by mentors.</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📝</div>
-          <h3>Daily Practice Prompts</h3>
-          <p>Get a fresh coding task every day, tailored to your skill level and learning goals.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Progress Dashboard</h3>
-          <p>See your streaks, completion rates, and skill growth at a glance with clear visual charts.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">👩‍🏫</div>
-          <h3>Mentor Feedback</h3>
-          <p>Share your work with mentors who review your submissions and leave actionable feedback.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Onboarding in 5 min</h3>
-          <p>Set your goals, choose your track, and start your first task — all in under five minutes.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📈</div>
-          <h3>Cohort Analytics</h3>
-          <p>Instructors can monitor cohort-level progress, identify at-risk students, and export reports.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔔</div>
-          <h3>Smart Reminders</h3>
-          <p>Never miss a day. Get reminders via email or push when a new task is waiting for you.</p>
-        </div>
+<section id="benefits" class="section">
+  <div class="container">
+    <h2 class="section-title">Why ExpatCare Thailand?</h2>
+    <p class="section-subtitle">We make insurance simple, transparent, and tailored to expat life.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>Clear & Simple</h3>
+        <p>No confusing legal jargon. Every policy is written in plain English so you know exactly what you're covered for.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>Designed for Expats</h3>
+        <p>Plans that understand your lifestyle — whether you're working, traveling, or living with family in Thailand.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>Affordable Plans</h3>
+        <p>Competitive pricing starting from just ฿1,500/month. Full coverage without breaking the bank.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>English & Thai Support</h3>
+        <p>Dedicated support team available in both English and Thai — via phone, email, or WhatsApp.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1633526543814-9718c8472e2a?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>Quick Claims</h3>
+        <p>Submit claims online and get processed within 5 working days. Hassle-free and fully transparent.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="https://images.unsplash.com/photo-1556911220-bffb3bedd6b2?w=80&h=80&fit=crop&crop=face" alt="" class="benefit-icon" />
+        <h3>Family Protection</h3>
+        <p>Cover your spouse and children under one simple plan. Secure your family's health and future.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="how-it-works" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">How it works</h2>
-      <p class="section-subtitle">Three simple steps to start building your coding habit.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Sign up & set goals</h3>
-          <p>Create your account, tell us what you want to learn, and pick your weekly commitment.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Complete daily tasks</h3>
-          <p>Receive a curated practice prompt each day. Write code, submit, and track your progress.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Get feedback & grow</h3>
-          <p>Mentors review your submissions, share tips, and help you level up faster.</p>
-        </div>
-      </div>
+<section id="plans" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Choose Your Plan</h2>
+    <p class="section-subtitle">Flexible coverage options to match your needs and budget.</p>
+    <div class="plans-grid" id="plansGrid"></div>
+  </div>
+</section>
+
+<section id="coverage" class="section">
+  <div class="container">
+    <h2 class="section-title">What We Cover</h2>
+    <p class="section-subtitle">Comprehensive protection for every part of your life in Thailand.</p>
+    <div class="coverage-grid">
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Health Insurance</h4><p>Outpatient, inpatient, and emergency care at top hospitals across Thailand.</p></div></div>
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1587745416684-47953f16fdd1?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Accident Coverage</h4><p>24/7 protection for accidents, including emergency evacuation if needed.</p></div></div>
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Travel Insurance</h4><p>Coverage for trips abroad, lost baggage, flight delays, and medical emergencies.</p></div></div>
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1556911220-bffb3bedd6b2?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Family Protection</h4><p>Plans that cover your spouse and children with wellness and dental benefits.</p></div></div>
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Dental & Vision</h4><p>Routine dental checkups, cleanings, and annual vision exams included.</p></div></div>
+      <div class="coverage-item"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=60&h=60&fit=crop" alt="" class="coverage-icon" /><div><h4>Mental Health</h4><p>Access to counseling and mental health services for you and your family.</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="signup" class="section">
-    <div class="container">
-      <div class="signup-card">
-        <h2>Start your coding journey today</h2>
-        <p>Join thousands of beginners who practice daily and level up fast.</p>
-        <form id="signupForm" class="signup-form">
-          <div class="form-row">
-            <input type="text" placeholder="Full name" required aria-label="Full name" />
-            <input type="email" placeholder="Email address" required aria-label="Email address" />
+<section id="testimonials" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Trusted by Expats Across Thailand</h2>
+    <p class="section-subtitle">Hear from people who have found peace of mind with ExpatCare.</p>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+    <div class="certs">
+      <span class="cert-badge">✓ Licensed by OIC Thailand</span>
+      <span class="cert-badge">✓ ISO 27001 Certified</span>
+      <span class="cert-badge">✓ Partnered with Top Hospitals</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Everything you need to know about insurance as an expat in Thailand.</p>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<section id="quote" class="section form-section">
+  <div class="container">
+    <h2 class="section-title">Request a Free Quote</h2>
+    <p class="section-subtitle">Fill in your details and we'll find the perfect plan for you within 24 hours.</p>
+    <div class="form-card">
+      <form id="quoteForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your full name" required />
           </div>
-          <div class="form-row">
-            <input type="password" placeholder="Password" required aria-label="Password" minlength="6" />
-            <select aria-label="I want to learn">
-              <option value="">I want to learn…</option>
-              <option>HTML & CSS</option>
-              <option>JavaScript</option>
-              <option>Python</option>
-              <option>React</option>
-              <option>Node.js</option>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+66 XX XXX XXXX" required />
+          </div>
+          <div class="form-group">
+            <label for="country">Country of Residence</label>
+            <select id="country" required>
+              <option value="">Select your country</option>
+              <option value="thailand">Thailand</option>
+              <option value="myanmar">Myanmar</option>
+              <option value="laos">Laos</option>
+              <option value="cambodia">Cambodia</option>
+              <option value="vietnam">Vietnam</option>
+              <option value="malaysia">Malaysia</option>
+              <option value="singapore">Singapore</option>
+              <option value="indonesia">Indonesia</option>
+              <option value="other">Other</option>
             </select>
           </div>
-          <div class="form-row">
-            <label class="checkbox-label">
-              <input type="checkbox" required /> I agree to the Terms & Privacy Policy
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Create Free Account</button>
-          <p class="form-footer">Already have an account? <a href="#login">Log in</a></p>
-        </form>
+        </div>
+        <div class="form-group">
+          <label for="plan">Preferred Plan</label>
+          <select id="plan">
+            <option value="">I'm not sure yet</option>
+            <option value="essential">Essential Plan</option>
+            <option value="premium">Premium Plan</option>
+            <option value="family">Family Plan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message (Optional)</label>
+          <textarea id="message" placeholder="Tell us about your needs or any questions..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Request Free Quote</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✓</div>
+        <h3>Thank You!</h3>
+        <p>Your quote request has been received. Our team will get back to you within 24 hours with a personalized plan.</p>
+        <button class="btn btn-outline" style="margin-top:1.25rem" onclick="resetForm()">Submit Another</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="logo">CodeDaily</span>
-        <p>Building better coders, one day at a time.</p>
+<section id="blog" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Helpful Resources for Expats</h2>
+    <p class="section-subtitle">Tips, guides, and insights for living and working in Thailand.</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=200&fit=crop" alt="" class="blog-card-img" />
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Healthcare</div>
+          <h3>A Complete Guide to Health Insurance for Expats in Thailand</h3>
+          <p>Everything you need to know about choosing the right health insurance plan as an expat living in Thailand.</p>
+          <a href="#">Read more →</a>
+        </div>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#features">Features</a>
-          <a href="tasks.html">Tasks</a>
-          <a href="dashboard.html">Dashboard</a>
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=200&fit=crop" alt="" class="blog-card-img" />
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Safety</div>
+          <h3>10 Essential Safety Tips for Expats Living Abroad</h3>
+          <p>Practical advice to stay safe and protected while enjoying your expat life in a new country.</p>
+          <a href="#">Read more →</a>
         </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#">About</a>
-          <a href="#">Blog</a>
-          <a href="#">Careers</a>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="#">Help Center</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+      </div>
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1556911220-bffb3bedd6b2?w=600&h=200&fit=crop" alt="" class="blog-card-img" />
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Family</div>
+          <h3>Moving to Thailand with Family: What You Need to Know</h3>
+          <p>From visas to schools and healthcare — a complete checklist for families relocating to Thailand.</p>
+          <a href="#">Read more →</a>
         </div>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; 2026 CodeDaily. All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="js/app.js"></script>
+<section id="contact" class="section cta-section">
+  <div class="container">
+    <h2>Ready to Get Protected?</h2>
+    <p>Get your free quote today or chat with our team. We're here to help you find the perfect coverage.</p>
+    <a href="#quote" class="btn btn-primary btn-lg">Get a Free Quote</a>
+    <div class="contact-channels" id="contactChannels"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">ExpatCare <span style="background:var(--accent);color:#fff;font-size:.6rem;padding:.15rem .45rem;border-radius:4px;font-weight:700">Thailand</span></a>
+      <p>Protecting expats in Thailand with clear, affordable, and reliable insurance since 2018.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plans</h4>
+      <a href="#plans">Essential</a>
+      <a href="#plans">Premium</a>
+      <a href="#plans">Family</a>
+      <a href="#quote">Get a Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#faq">FAQ</a>
+      <a href="#blog">Blog</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-col" id="footerContact">
+      <h4>Contact</h4>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; 2026 ExpatCare Thailand. All rights reserved. Licensed by the Office of Insurance Commission (OIC), Thailand.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var insuranceDatabase = {
+  products: [
+    {
+      id: 1,
+      name: "Expat Health Plus",
+      type: "Health Insurance",
+      target: "Expats in Thailand",
+      coverage: ["Hospital care", "Outpatient treatment", "Emergency evacuation"],
+      monthlyPrice: 1800,
+      currency: "THB",
+      description: "A flexible health plan for professionals and families living in Thailand.",
+      image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=400&fit=crop"
+    },
+    {
+      id: 2,
+      name: "Travel Safe Expat",
+      type: "Travel Insurance",
+      target: "Frequent travelers and short-term expats",
+      coverage: ["Trip cancellation", "Medical emergencies", "Lost baggage"],
+      monthlyPrice: 900,
+      currency: "THB",
+      description: "Ideal for expats who travel often between Thailand and overseas.",
+      image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop"
+    },
+    {
+      id: 3,
+      name: "Family Secure Plan",
+      type: "Family Protection",
+      target: "Expat families",
+      coverage: ["Family health", "Dental care", "Accident protection"],
+      monthlyPrice: 2600,
+      currency: "THB",
+      description: "A family-focused plan with wider protection for dependents.",
+      image: "https://images.unsplash.com/photo-1556911220-bffb3bedd6b2?w=600&h=400&fit=crop"
+    }
+  ],
+  testimonials: [
+    {
+      id: 1,
+      name: "Sarah M.",
+      nationality: "British",
+      city: "Bangkok",
+      message: "The process was simple, and the coverage was easy to understand.",
+      photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&crop=face"
+    },
+    {
+      id: 2,
+      name: "Daniel K.",
+      nationality: "German",
+      city: "Chiang Mai",
+      message: "I felt secure knowing I had support during medical emergencies.",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+    }
+  ],
+  faqs: [
+    {
+      id: 1,
+      question: "Can expats buy this insurance in Thailand?",
+      answer: "Yes, the plan is designed for expatriates living and working in Thailand."
+    },
+    {
+      id: 2,
+      question: "Does the plan cover emergency treatment?",
+      answer: "Yes, emergency medical care and evacuation are included in selected plans."
+    }
+  ],
+  contactInfo: {
+    email: "support@expatinsurance.co.th",
+    phone: "+66 81 234 5678",
+    address: "Bangkok, Thailand"
+  }
+};
+
+(function(){
+  'use strict';
+
+  var db = insuranceDatabase;
+  var toast = document.getElementById('toast');
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function(){ toast.classList.remove('show'); }, 3500);
+  }
+
+  // Render plans
+  var plansGrid = document.getElementById('plansGrid');
+  if (plansGrid) {
+    var featuredId = 3;
+    db.products.forEach(function(p, i) {
+      var isFeatured = p.id === featuredId;
+      var card = document.createElement('div');
+      card.className = 'plan-card' + (isFeatured ? ' featured' : '');
+      card.innerHTML =
+        (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy" style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:1rem" />' : '') +
+        '<div class="plan-name">' + p.type + '</div>' +
+        '<h3>' + p.currency + ' ' + p.monthlyPrice.toLocaleString() + '<span style="font-size:.9rem;color:var(--muted);font-weight:400">/mo</span></h3>' +
+        '<p class="price">' + p.description + '</p>' +
+        '<ul class="plan-features">' +
+        p.coverage.map(function(c) { return '<li>' + c + '</li>'; }).join('') +
+        '</ul>' +
+        '<a href="#quote" class="btn ' + (isFeatured ? 'btn-primary' : 'btn-outline') + ' btn-block">Get a Quote</a>';
+      plansGrid.appendChild(card);
+    });
+  }
+
+  // Render testimonials
+  var testimonialsGrid = document.getElementById('testimonialsGrid');
+  if (testimonialsGrid) {
+    db.testimonials.forEach(function(t) {
+      var card = document.createElement('div');
+      card.className = 'testimonial-card';
+      card.innerHTML =
+        '<p>' + t.message + '</p>' +
+        '<div class="testimonial-author">' +
+          '<img src="' + t.photo + '" alt="' + t.name + '" class="testimonial-avatar" />' +
+          '<div><strong>' + t.name + '</strong><span>' + t.nationality + ', ' + t.city + '</span></div>' +
+        '</div>';
+      testimonialsGrid.appendChild(card);
+    });
+  }
+
+  // Render FAQs
+  var faqList = document.getElementById('faqList');
+  if (faqList) {
+    db.faqs.forEach(function(f, idx) {
+      var isOpen = idx === 0;
+      var item = document.createElement('div');
+      item.className = 'faq-item' + (isOpen ? ' open' : '');
+      item.innerHTML =
+        '<button class="faq-question" aria-expanded="' + isOpen + '">' + f.question + '<span>▾</span></button>' +
+        '<div class="faq-answer">' + f.answer + '</div>';
+      faqList.appendChild(item);
+    });
+  }
+
+  // FAQ accordion (re-initialize for dynamic items)
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.parentElement;
+      var isOpen = item.classList.contains('open');
+      item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Render contact channels
+  var contactChannels = document.getElementById('contactChannels');
+  if (contactChannels) {
+    var channels = [
+      { label: '\uD83D\uDCDE ' + db.contactInfo.phone, href: 'tel:' + db.contactInfo.phone.replace(/\s/g, '') },
+      { label: '\u2709\uFE0F ' + db.contactInfo.email, href: 'mailto:' + db.contactInfo.email },
+      { label: '\uD83D\uDCAC WhatsApp: ' + db.contactInfo.phone, href: '#' }
+    ];
+    channels.forEach(function(c) {
+      var a = document.createElement('a');
+      a.className = 'contact-channel';
+      a.href = c.href;
+      a.textContent = c.label;
+      contactChannels.appendChild(a);
+    });
+  }
+
+  // Render footer contact
+  var footerContact = document.getElementById('footerContact');
+  if (footerContact) {
+    var footerLinks = [
+      { label: db.contactInfo.phone, href: 'tel:' + db.contactInfo.phone.replace(/\s/g, '') },
+      { label: db.contactInfo.email, href: 'mailto:' + db.contactInfo.email },
+      { label: db.contactInfo.address, href: '#' }
+    ];
+    footerLinks.forEach(function(l) {
+      var a = document.createElement('a');
+      a.href = l.href;
+      a.textContent = l.label;
+      footerContact.appendChild(a);
+    });
+  }
+
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle) {
+    navToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { navLinks.classList.remove('open'); });
+    });
+  }
+
+  // Quote form
+  var quoteForm = document.getElementById('quoteForm');
+  var formSuccess = document.getElementById('formSuccess');
+  function resetForm() {
+    quoteForm.reset();
+    quoteForm.style.display = '';
+    formSuccess.classList.remove('show');
+  }
+  window.resetForm = resetForm;
+  if (quoteForm) {
+    // Populate plan options from database
+    var planSelect = document.getElementById('plan');
+    if (planSelect) {
+      db.products.forEach(function(p) {
+        var opt = document.createElement('option');
+        opt.value = p.name.toLowerCase().replace(/\s+/g, '-');
+        opt.textContent = p.name + ' (\u0E3F' + p.monthlyPrice.toLocaleString() + '/mo)';
+        planSelect.appendChild(opt);
+      });
+    }
+    quoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      quoteForm.style.display = 'none';
+      formSuccess.classList.add('show');
+      showToast('Thanks ' + name.split(' ')[0] + '! We\'ll be in touch within 24 hours.');
+    });
+  }
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
